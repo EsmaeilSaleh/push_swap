@@ -1,0 +1,64 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ops_reverse.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: esmaeil <esmaeil@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/18 00:00:00 by esmaeil           #+#    #+#             */
+/*   Updated: 2026/01/18 00:00:00 by esmaeil          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+void	rev_rotate_stack(t_node **s)
+{
+	t_node	*first;
+	t_node	*prev;
+	t_node	*last;
+
+	if (!s || !*s || !(*s)->next)
+		return ;
+	first = *s;
+	if (!first->next->next)
+	{
+		last = first->next;
+		first->next = NULL;
+		last->next = first;
+		*s = last;
+		return ;
+	}
+	prev = first;
+	last = first->next;
+	while (last->next)
+	{
+		prev = last;
+		last = last->next;
+	}
+	prev->next = NULL;
+	last->next = first;
+	*s = last;
+}
+
+void	rra(t_node **a, int print)
+{
+	rev_rotate_stack(a);
+	if (print)
+		write(1, "rra\n", 4);
+}
+
+void	rrb(t_node **b, int print)
+{
+	rev_rotate_stack(b);
+	if (print)
+		write(1, "rrb\n", 4);
+}
+
+void	rrr(t_node **a, t_node **b, int print)
+{
+	rev_rotate_stack(a);
+	rev_rotate_stack(b);
+	if (print)
+		write(1, "rrr\n", 4);
+}
