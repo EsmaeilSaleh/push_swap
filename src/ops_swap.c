@@ -30,14 +30,20 @@ void	sa(t_node **a, int print)
 {
 	swap_stack(a);
 	if (print)
+	{
 		write(1, "sa\n", 3);
+		debug_log_op("sa", *a, NULL);
+	}
 }
 
 void	sb(t_node **b, int print)
 {
 	swap_stack(b);
 	if (print)
+	{
 		write(1, "sb\n", 3);
+		debug_log_op("sb", NULL, *b);
+	}
 }
 
 void	ss(t_node **a, t_node **b, int print)
@@ -45,5 +51,8 @@ void	ss(t_node **a, t_node **b, int print)
 	swap_stack(a);
 	swap_stack(b);
 	if (print)
+	{
 		write(1, "ss\n", 3);
+		debug_log_op("ss", *a, *b);
+	}
 }

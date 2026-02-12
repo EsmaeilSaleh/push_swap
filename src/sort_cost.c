@@ -1,45 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ops_push.c                                         :+:      :+:    :+:   */
+/*   sort_cost.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: esmaeil <esmaeil@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/18 00:00:00 by esmaeil           #+#    #+#             */
-/*   Updated: 2026/01/18 00:00:00 by esmaeil          ###   ########.fr       */
+/*   Created: 2026/02/09 10:00:00 by esmaeil           #+#    #+#             */
+/*   Updated: 2026/02/09 10:00:00 by esmaeil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	push_stack(t_node **from, t_node **to)
+static int	abs_value(int n)
 {
-	t_node	*tmp;
-
-	if (!from || !*from)
-		return ;
-	tmp = *from;
-	*from = (*from)->next;
-	tmp->next = *to;
-	*to = tmp;
+	if (n < 0)
+		return (-n);
+	return (n);
 }
 
-void	pa(t_node **a, t_node **b, int print)
+int	get_rot_value(int pos, int size)
 {
-	push_stack(b, a);
-	if (print)
-	{
-		write(1, "pa\n", 3);
-		debug_log_op("pa", *a, *b);
-	}
+	if (pos <= size / 2)
+		return (pos);
+	return (pos - size);
 }
 
-void	pb(t_node **a, t_node **b, int print)
+int	calc_move_cost(int rot_a, int rot_b)
 {
-	push_stack(a, b);
-	if (print)
+	if ((rot_a >= 0 && rot_b >= 0) || (rot_a < 0 && rot_b < 0))
 	{
-		write(1, "pb\n", 3);
-		debug_log_op("pb", *a, *b);
+		if (abs_value(rot_a) > abs_value(rot_b))
+			return (abs_value(rot_a));
+		return (abs_value(rot_b));
 	}
+	return (abs_value(rot_a) + abs_value(rot_b));
 }

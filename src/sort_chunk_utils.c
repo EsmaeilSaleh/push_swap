@@ -14,19 +14,24 @@
 
 int	find_min_pos(t_node *a)
 {
-	int		pos;
-	t_node	*tmp;
+	int	pos;
+	int	min_pos;
+	int	min_idx;
 
-	tmp = a;
 	pos = 0;
-	while (tmp)
+	min_pos = 0;
+	min_idx = a->index;
+	while (a)
 	{
-		if (tmp->index == 0)
-			break ;
+		if (a->index < min_idx)
+		{
+			min_idx = a->index;
+			min_pos = pos;
+		}
 		pos++;
-		tmp = tmp->next;
+		a = a->next;
 	}
-	return (pos);
+	return (min_pos);
 }
 
 void	rotate_to_min(t_node **a)

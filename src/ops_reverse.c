@@ -45,14 +45,20 @@ void	rra(t_node **a, int print)
 {
 	rev_rotate_stack(a);
 	if (print)
+	{
 		write(1, "rra\n", 4);
+		debug_log_op("rra", *a, NULL);
+	}
 }
 
 void	rrb(t_node **b, int print)
 {
 	rev_rotate_stack(b);
 	if (print)
+	{
 		write(1, "rrb\n", 4);
+		debug_log_op("rrb", NULL, *b);
+	}
 }
 
 void	rrr(t_node **a, t_node **b, int print)
@@ -60,5 +66,8 @@ void	rrr(t_node **a, t_node **b, int print)
 	rev_rotate_stack(a);
 	rev_rotate_stack(b);
 	if (print)
+	{
 		write(1, "rrr\n", 4);
+		debug_log_op("rrr", *a, *b);
+	}
 }

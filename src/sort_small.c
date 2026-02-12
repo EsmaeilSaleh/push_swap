@@ -26,20 +26,24 @@ static void	sort_three(t_node **a)
 	sort_three_cases(a, first, second, third);
 }
 
-static void	sort_four(t_node **a, t_node **b)
+static void	rotate_min_to_top(t_node **a)
 {
 	int	pos;
+	int	size;
 
 	pos = min_pos(*a);
-	if (pos == 1)
-		ra(a, 1);
-	else if (pos == 2)
-	{
-		ra(a, 1);
-		ra(a, 1);
-	}
-	else if (pos == 3)
-		rra(a, 1);
+	size = stack_size(*a);
+	if (pos <= size / 2)
+		while (pos-- > 0)
+			ra(a, 1);
+	else
+		while (pos++ < size)
+			rra(a, 1);
+}
+
+static void	sort_four(t_node **a, t_node **b)
+{
+	rotate_min_to_top(a);
 	pb(a, b, 1);
 	sort_three(a);
 	pa(a, b, 1);
@@ -47,25 +51,12 @@ static void	sort_four(t_node **a, t_node **b)
 
 static void	sort_five(t_node **a, t_node **b)
 {
-	int	pos;
-
-	pos = min_pos(*a);
-	if (pos == 1)
-		ra(a, 1);
-	else if (pos == 2)
-	{
-		ra(a, 1);
-		ra(a, 1);
-	}
-	else if (pos == 3)
-	{
-		rra(a, 1);
-		rra(a, 1);
-	}
-	else if (pos == 4)
-		rra(a, 1);
+	rotate_min_to_top(a);
 	pb(a, b, 1);
-	sort_four(a, b);
+	rotate_min_to_top(a);
+	pb(a, b, 1);
+	sort_three(a);
+	pa(a, b, 1);
 	pa(a, b, 1);
 }
 

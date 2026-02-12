@@ -59,15 +59,22 @@ void	rev_rotate_stack(t_node **s);
 
 /* sort */
 void	sort_small(t_node **a, t_node **b);
-void	radix_sort(t_node **a, t_node **b);
 void	chunk_sort(t_node **a, t_node **b, int size);
 void	sort_three_cases(t_node **a, int first, int second, int third);
 int		min_pos(t_node *a);
 int		find_min_pos(t_node *a);
 void	rotate_to_min(t_node **a);
 int		find_max_pos(t_node *b);
+int		get_rot_value(int pos, int size);
+int		calc_move_cost(int rot_a, int rot_b);
+int		find_insert_pos_a(t_node *a, int index);
+void	exec_combined_rotations(t_node **a, t_node **b, int *rot_a, int *rot_b);
+void	push_back_all(t_node **a, t_node **b);
 
 /* utils */
 void	error_exit(t_node **a, t_node **b, char **split);
+
+/* debug */
+void	debug_log_op(const char *op, t_node *a, t_node *b);
 
 #endif

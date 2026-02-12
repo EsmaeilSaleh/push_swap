@@ -13,11 +13,15 @@ SRCS		= src/main.c \
 		src/parse_utils.c \
 		src/indexing.c \
 		src/assign_indexes.c \
+		src/debug.c \
 		src/utils.c \
 		src/sort_small.c \
 		src/sort_small_utils.c \
-		src/sort_radix.c \
 		src/sort_chunk.c \
+		src/sort_cost.c \
+		src/sort_insert.c \
+		src/sort_rotate_plan.c \
+		src/sort_pushback.c \
 		src/sort_chunk_utils.c
 
 OBJS		= $(SRCS:.c=.o)
